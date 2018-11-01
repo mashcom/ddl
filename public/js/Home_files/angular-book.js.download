@@ -1,0 +1,104 @@
+angular.module('MSU', [])
+    .controller('PriceCtrl', function ($scope, $http) {
+
+        $scope.quantity = 0;
+        $scope.total_discount = 0;
+
+
+        $scope.initDates = function () {
+
+            $scope.getUnavailableDates();
+            $scope.getCoupons();
+        }
+
+        $scope.getUnavailableDates = function () {
+            $http({method: 'GET', url: 'http://localhost/msubnb/public/booked/dates'}).then(function (response) {
+                $scope.status = response.status;
+                $scope.data = response.data;
+                console.log($scope.data);
+            }, function (response) {
+                $scope.data = response.data || 'Request failed';
+                $scope.status = response.status;
+            });
+
+        }
+
+
+        $scope.calculate = function () {
+            $scope.dates = angular.element(document.getElementById('dates')).val();
+            var fields = $scope.dates.split('- ');
+            var start_date = fields[0];
+            var end_date = fields[1];
+            $scope.date_diff = $scope.dayDiff(start_date, end_date) + 1;
+            console.log($scope.date_diff);
+            $scope.facility_price = angular.element(document.getElementById('price')).val();
+            if ($scope.date_diff == 0) {
+                $scope.total_price = $scope.facility_price * $scope.quantity;
+            } else {
+                $scope.total_price = $scope.facility_price * $scope.quantity * $scope.date_diff;
+            }
+
+            $scope.applyCoupon();
+
+        }
+
+
+        $scope.addGuest = function () {
+            $scope.quantity += 1;
+            $scope.calculate();
+        }
+        $scope.minusGuest = function () {
+            if ($scope.quantity > 0) {
+                $scope.quantity -= 1;
+                $scope.calculate();
+            }
+
+        }
+
+        $scope.getCoupons = function () {
+            $http({method: 'GET', url: 'http://localhost/msubnb/public/coupon/WELCOME25'}).then(function (response) {
+                $scope.status = response.status;
+                $scope.retrived_coupon = response.data;
+            }, function (response) {
+                $scope.data = response.data || 'Request failed';
+                $scope.status = response.status;
+            });
+
+        }
+
+        $scope.applyCoupon = function () {
+
+            $scope.discount_percent = 0;
+            $scope.getCoupons();
+            //alert($scope.retrived_coupon.name)
+            if ($scope.retrived_coupon.name == $scope.coupon) {
+                $scope.discount_percent = $scope.retrived_coupon.discount / 100;
+            }
+            //alert($scope.discount_percent);
+            $scope.total_discount = $scope.total_price * $scope.discount_percent;
+            $scope.total_price = $scope.total_price - $scope.total_discount;
+
+        }
+
+        $scope.dayDiff = function (firstDate, secondDate) {
+            var date2 = new Date($scope.formatString(secondDate));
+            var date1 = new Date($scope.formatString(firstDate));
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            return $scope.dayDifference;
+
+        }
+
+        $scope.formatString = function (format) {
+            var day = parseInt(format.substring(0, 2));
+            var month = parseInt(format.substring(3, 5));
+            var year = parseInt(format.substring(6, 10));
+            var date = new Date(year, month - 1, day);
+            return date;
+        }
+
+
+        $scope.startBooking = function () {
+            alert("start booking");
+        }
+    });

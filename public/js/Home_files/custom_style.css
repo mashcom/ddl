@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+@font-face {
+    font-family: glyphicon;
+    src: url("https://fastcdn.org/Bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff2");
+
+}
+
+@font-face {
+    font-family: Eina;
+    src: url(fonts/eina/eina-03-bold.woff2) format("woff2"), url(fonts/eina/eina-03-bold.woff) format("woff"), url(fonts/eina/eina-03-bold.ttf) format("ttf"), url(fonts/eina/eina-03-boldd41d.eot?#iefix) format("eot");
+    font-weight: 700;
+    unicode-range: U+000-5FF
+}
+
+@font-face {
+    font-family: Eina;
+    src: url(fonts/eina/eina-03-semibold.woff2) format("woff2"), url(fonts/eina/eina-03-semibold.woff) format("woff"), url(fonts/eina/eina-03-semibold.ttf) format("ttf"), url(fonts/eina/eina-03-semiboldd41d.eot?#iefix) format("eot");
+    font-weight: 600;
+    unicode-range: U+000-5FF
+}
+
+@font-face {
+    font-family: Eina;
+    src: url(fonts/eina/eina-03-regular.woff2) format("woff2"), url(fonts/eina/eina-03-regular.woff) format("woff"), url(fonts/eina/eina-03-regular.ttf) format("ttf"), url(fonts/eina/eina-03-regulard41d.eot?#iefix) format("eot");
+    font-weight: 400;
+    unicode-range: U+000-5FF
+}
+
+body {
+    font-family: Nunito, eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+    font-family: eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
+.bnb-border, .card {
+    border: 1px solid #EBEBEB !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.bnb-booker {
+    right: 0;
+    top: -15%;
+}
+
+.bnb-booker .btn {
+    font-size: 1rem;
+}
+
+.bnb-badge {
+    top: 5%;
+    right: 5%;
+}
+
+.bnb-card .carousel {
+    margin-bottom: 0;
+}
+
+.bnb-card .carousel-inner {
+
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 175px;
+
+}
+
+h4.bnb-title.font-weight-bold.small {
+    font-size: 16px;
+}
+
+.bnb-card .carousel-item > img {
+    width: 100%;
+    height: 175px;
+}
+
+.bnb-border-bottom {
+    border: 1px solid #EBEBEB !important;
+}
+
+.bnb-container {
+    margin-top: -1%;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.nav-link:focus {
+    color: #f5f5f5;
+}
+
+.bnb-logo {
+    height: 50px;
+    width: auto;
+}
+
+.carousel-item {
+    height: 650px;
+}
+
+.carousel-item img {
+    height: auto;
+}
+.daterangepicker td.in-range {
+    background-color: #357ebd !important;
+    color: #f8f9fa !important;
+}
+.daterangepicker td.disabled, .daterangepicker option.disabled {
+    color: #dc3545 !important;
+}
+.daterangepicker{
+    font-family: 'eina','nunito',arial !important;
+    font-weight: bold !important;
+}
