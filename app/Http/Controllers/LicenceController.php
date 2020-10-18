@@ -130,7 +130,9 @@ class LicenceController extends Controller
             'gender' => 'required',
             'dob' => ['required','date',new DobValid],
             'date_of_issue' => ["required","date","after:dob",new DateOfIssue],
-            'licence_no' => 'required|unique:licences|regex:[^\\d{5}?[A-Za-z]{2}$]'
+            'licence_no' => 'required|unique:licences',
+            'mode' => 'required',
+            'course' => 'required'
 
         ]);
 
@@ -142,6 +144,8 @@ class LicenceController extends Controller
         $licence->date_of_issue = $request->date_of_issue;
         $licence->gender = $request->gender;
         $licence->email = $request->email;
+        $licence->mode = $request->mode;
+        $licence->course = $request->course;
 
         $imageName = $request->licence_no . "-" . sha1(time()) . '.' . $request->image->getClientOriginalExtension();
         $path = public_path('images/' . $imageName);
@@ -154,9 +158,6 @@ class LicenceController extends Controller
         $licence->image = $imageName;
 
         if ($licence->save()) {
-            $c1 = ["class1" => $request->class1, "class2" => $request->class2, "class3" => $request->class3, "class4" => $request->class4, "class5" => $request->class5];
-            LicenceClass::updateOrCreate(["licence_id" => $licence->id, "class" => json_encode($c1)]);
-
             return back()->with('success', 'Record saved successfully');
         }
         return back()->withErrors(['Record could not be saved']);
@@ -171,8 +172,7 @@ class LicenceController extends Controller
     public function show($id)
     {
         $licence = Licence::with('licence_class')->whereId($id)->first();
-        $licence_class = collect(json_decode($licence->licence_class->class));
-        return view('single', ['licence' => $licence, 'licence_class' => $licence_class]);
+        return view('single', ['licence' => $licence]);
 
     }
 
@@ -205,8 +205,7 @@ class LicenceController extends Controller
     public function edit($id)
     {
         $licence = Licence::with('licence_class')->whereId($id)->first();
-        $licence_class = collect(json_decode($licence->licence_class->class));
-        return view('edit', ['licence' => $licence, 'licence_class' => $licence_class]);
+        return view('edit', ['licence' => $licence]);
     }
 
     /**
@@ -239,7 +238,6 @@ class LicenceController extends Controller
             'date_of_issue' => 'required',
             'licence_no' => array(
                 'required',
-                'regex:[^\\d{5}?[A-Za-z]{2}$]',
                 Rule::unique('licences')->ignore($id)
             ),
             'email' => array(
@@ -247,6 +245,8 @@ class LicenceController extends Controller
                 'email',
                 Rule::unique('licences')->ignore($id)
             ),
+            'mode' => 'required',
+            'course' => 'required'
 
         ]);
 
@@ -259,11 +259,14 @@ class LicenceController extends Controller
         $licence->gender = $request->gender;
         $licence->email = $request->email;
 
+        $licence->mode = $request->mode;
+        $licence->course = $request->course;
+
 
         if (isset($request->image)) {
             $licence->image = $request->image;
             $imageName = sha1(time()) . '.' . $request->image->getClientOriginalExtension();
-            $path = Storage('images/' . $imageName);
+            $path = public_path('images/' . $imageName);
             $img = Image::make($request->image->getRealPath());
             $img->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -274,11 +277,6 @@ class LicenceController extends Controller
         }
 
         if ($licence->save()) {
-            $c1 = ["class1" => $request->class1, "class2" => $request->class2, "class3" => $request->class3, "class4" => $request->class4, "class5" => $request->class5];
-            //dd($c1);
-
-            LicenceClass::where("licence_id", $licence->id)->update(["class" => json_encode($c1)]);
-
             return back()->with('success', 'Record updated successfully');
         }
         return back()->withErrors(['Record updated successfully']);

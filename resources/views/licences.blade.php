@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
 
             <div class="col-md-12">
-                <h1 class="text-center">Licences</h1>
+                <h1 class="text-center">ID Entries</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger font-weight-bold">
                         <ul>
@@ -37,9 +37,9 @@
                             <th>Name</th>
                             <th>National ID</th>
                             <th>Date of Birth</th>
-                            <th>Licence No</th>
-                            <th>Date of Issue</th>
-                            <th>Gender</th>
+                            <th>Student No</th>
+                            <th>Mode</th>
+                            <th>Course</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -51,8 +51,8 @@
                                 <td>{{$licence->national_id}}</td>
                                 <td>{{$licence->dob}}</td>
                                 <td>{{$licence->licence_no}}</td>
-                                <td>{{$licence->date_of_issue}}</td>
-                                <td>{{$licence->gender}}</td>
+                                <td>{{$licence->mode}}</td>
+                                <td>{{$licence->course}}</td>
                                 <td>
 
                                     <a href="{{url('licence/delete',['id'=>$licence->id])}}"

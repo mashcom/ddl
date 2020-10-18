@@ -57,8 +57,8 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                DDL Admin
+            <a class="navbar-brand" href="{{ url('licence') }}">
+                ID Admin
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -86,10 +86,10 @@
                         </li>-->
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('licence') }}">Licences</a>
+                            <a class="nav-link" href="{{ url('licence') }}">ID Entries</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('licence/create') }}">New Licence</a>
+                            <a class="nav-link" href="{{ url('licence/create') }}">New ID</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('qr') }}">QR Authenticator</a>

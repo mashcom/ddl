@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h3 class="text-center mb-5">Edit Licence</h3>
+        <h3 class="text-center mb-5">Edit ID</h3>
         <div class="row justify-content-center">
             <div class="row">
                 <div class="col-lg-3">
@@ -35,12 +35,29 @@
 
                                 <br><br>
                                 <div class="col-md-12 mb-3">
-                                    <label for="firstName">Licence No</label>
+                                    <label for="firstName">Student No</label>
                                     <input class="form-control" name="licence_no" value="{{$licence->licence_no}}" placeholder="Licence No"
                                            required="" autofocus="" type="text"
                                     >
 
                                 </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <label for="firstName">Mode of Study</label>
+                                    <input class="form-control" name="mode" value="{{$licence->mode}}"
+                                           placeholder="Mode of Study"
+                                           required="" autofocus="" type="text"
+                                    >
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <label for="firstName">Course</label>
+                                    <input class="form-control" name="course" value="{{$licence->course}}"
+                                           placeholder="Course"
+                                           required="" type="text"
+                                    >
+                                </div>
+
                                 <div class="col-lg-6 mb-3">
                                     <label for="firstName">Fullname</label>
                                     <input class="form-control" name="name" value="{{$licence->name}}" placeholder="Fullname"
@@ -105,29 +122,6 @@
                                     <hr class="mb-4">
                                 </div>
 
-                                <div class="col-lg-12 mb-3 row">
-
-                                    <div class="custom-control custom-checkbox col-lg-2">
-                                        <input type="checkbox" class="custom-control-input" id="class1" name="class1" @if($licence_class['class1'])  checked @endif>
-                                        <label class="custom-control-label" for="class1">Class 1</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox col-lg-2">
-                                        <input type="checkbox" class="custom-control-input" id="class2" name="class2"  @if($licence_class['class2'])  checked @endif>
-                                        <label class="custom-control-label" for="class2">Class 2</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox col-lg-2">
-                                        <input type="checkbox" class="custom-control-input" id="class3" name="class3"  @if($licence_class['class3'])  checked @endif>
-                                        <label class="custom-control-label" for="class3">Class 3</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox col-lg-2">
-                                        <input type="checkbox" class="custom-control-input" id="class4" name="class4"  @if($licence_class['class4'])  checked @endif>
-                                        <label class="custom-control-label" for="class4">Class 4</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox col-lg-2">
-                                        <input type="checkbox" class="custom-control-input" id="class5" name="class5"  @if($licence_class['class5'])  checked @endif>
-                                        <label class="custom-control-label" for="class5">Class 5</label>
-                                    </div>
-                                </div>
                             </div>
 
 
