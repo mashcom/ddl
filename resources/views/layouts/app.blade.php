@@ -86,7 +86,7 @@
                         </li>-->
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('licence') }}">ID Entries</a>
+                            <a class="nav-link" href="{{ url('licence') }}">Digital ID</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('licence/create') }}">New ID</a>
