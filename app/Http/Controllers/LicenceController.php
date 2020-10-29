@@ -308,5 +308,22 @@ class LicenceController extends Controller
         return back()->withErrors('Error deleting record, please try again!');
     }
 
+    public function reports(){
+        $course_stats = Licence::groupBy('course')
+            ->selectRaw('count(*) as total, course')
+            ->get();
+
+        $mode_stats = Licence::groupBy('mode')
+            ->selectRaw('count(*) as total, mode')
+            ->get();
+
+        $gender_stats = Licence::groupBy('gender')
+            ->selectRaw('count(*) as total, gender')
+            ->get();
+        return view('report', ['courses' => $course_stats,'modes'=>$mode_stats,'gender'=>$gender_stats]);
+    }
+
+
+
 
 }

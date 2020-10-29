@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('qr', 'LicenceController@qr');
     Route::post('qr', 'LicenceController@generateQr');
     Route::get('log','LicenceController@getLogs');
+    Route::get('report','LicenceController@reports');
 });
 
 Route::get('reset/pwd/{licence_no}', 'HomeController@accountExists');

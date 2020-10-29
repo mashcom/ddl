@@ -3,131 +3,151 @@
 @section('content')
     <div class="container">
         <h3 class="text-center mb-5">Add New ID</h3>
-      <div class="card">
-          <div class="card-body p-5">
-              <div class="row justify-content-center">
-                  <div class="row">
-                      <div class="col-lg-3">
-                          <img id="blah" src="" alt="member image" style="width: 100%"/>
-                      </div>
-                      <div class="col-lg-9 well bs-component">
-                          @if ($errors->any())
-                              <div class="alert alert-danger font-weight-bold">
-                                  <ul>
-                                      @foreach ($errors->all() as $error)
-                                          <li>{{ $error }}</li>
-                                      @endforeach
-                                  </ul>
-                              </div>
-                          @endif
+        <div class="card">
+            <div class="card-body p-5">
+                <div class="row justify-content-center">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img id="blah" src="" alt="member image" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-9 well bs-component">
+                            @if ($errors->any())
+                                <div class="alert alert-danger font-weight-bold">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
-                          @if(session('success'))
-                              <div class="alert alert-success font-weight-bold">
-                                  {{  session('success') }}
-                              </div>
-                          @endif
+                            @if(session('success'))
+                                <div class="alert alert-success font-weight-bold">
+                                    {{  session('success') }}
+                                </div>
+                            @endif
 
-                          <form class="needs-validation form-horizontal" method="post"
-                                action="{{ url('licence') }}"
-                                enctype="multipart/form-data">
-                              <fieldset>
-                                  {{ csrf_field() }}
+                            <form class="needs-validation form-horizontal" method="post"
+                                  action="{{ url('licence') }}"
+                                  enctype="multipart/form-data">
+                                <fieldset>
+                                    {{ csrf_field() }}
 
-                                  <div class="row">
+                                    <div class="row">
 
-                                      <br><br>
-                                      <div class="col-md-12 mb-3">
-                                          <label for="firstName">Student Number</label>
-                                          <input class="form-control" name="licence_no" value="{{old('licence_no')}}"
-                                                 placeholder="Student Number"
-                                                 required="" autofocus="" type="text"
-                                          >
+                                        <br><br>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="firstName">Student Number</label>
+                                            <input class="form-control" name="licence_no" value="{{old('licence_no')}}"
+                                                   placeholder="Student Number"
+                                                   required="" autofocus="" type="text"
+                                            >
 
-                                      </div>
+                                        </div>
 
-                                      <div class="col-lg-6 mb-3">
-                                          <label for="firstName">Mode of Study</label>
-                                          <input class="form-control" name="mode" value="{{old('mode')}}"
-                                                 placeholder="Mode of Study"
-                                                 required="" autofocus="" type="text"
-                                          >
-                                      </div>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="firstName">Mode of Study</label>
 
-                                      <div class="col-lg-6 mb-3">
-                                          <label for="firstName">Course</label>
-                                          <input class="form-control" name="course" value="{{old('course')}}"
-                                                 placeholder="Course"
-                                                 required="" type="text"
-                                          >
-                                      </div>
+                                            <select class="form-control" name="mode" required>
+                                                <option></option>
+                                                <option>Full-time</option>
+                                                <option>Part-time</option>
+                                            </select>
+                                        </div>
 
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="firstName">Course</label>
 
-                                      <div class="col-lg-6 mb-3">
-                                          <label for="firstName">Fullname</label>
-                                          <input class="form-control" name="name" value="{{old('name')}}"
-                                                 placeholder="Fullname"
-                                                 required="" autofocus="" type="text"
-                                          >
-                                      </div>
+                                            <select class="form-control" name="course" required>
+                                                <option></option>
+                                                <?php $programmes = array(
+                                                    "ND in: Accounting",
+                                                    "ND Purchasing and Supply", "ND in Secretarial Studies",
+                                                    "ND in Information Technology",
+                                                    "NC Hairdressing/Cosmetology/ Beauty Therapy",
+                                                    "NC in Diesel Plant Fitting",
+                                                    "NC in Draughting & Design Technology",
+                                                    "NC in Plant/ Production Engineering",
+                                                    "ND in Technical & Vocational Education  (HEXCO)"
+                                                );
 
-                                      <div class="col-lg-6 mb-3">
-                                          <label for="firstName">Email</label>
-                                          <input class="form-control" name="email" value="{{old('email')}}"
-                                                 placeholder="Email Address"
-                                                 required="" type="email"
-                                          >
-                                      </div>
+                                                foreach ($programmes as $programme):
+                                                ?>
+                                                <option><?php echo $programme; ?></option>
+                                                <?php endforeach;?>
 
-                                      <div class="col-md-6 mb-3" style="display: nodne !important;">
-                                          <br/>
-                                          <label for="firstName">Date of Birth</label>
-                                          <div style="width: 100% !important;">
-                                              <input class="form-control" name="dob"
-                                                     value="{{old('dob')}}" required=""
-                                                     type="date">
-                                          </div>
-                                      </div>
-
-                                      <div class="col-md-6 mb-3" style="display: nodne !important;">
-                                          <br/>
-                                          <label for="firstName">Date of Issue</label>
-                                          <div style="width: 100% !important;">
-                                              <input class="form-control" name="date_of_issue" placeholder="dd-mm-yyyy"
-                                                     value="{{old('date_of_issue')}}" required=""
-                                                     type="date">
-                                          </div>
-                                      </div>
+                                            </select>
+                                        </div>
 
 
-                                      <div class="col-md-6 mb-3">
-                                          <br>
-                                          <label for="firstName">Gender</label>
-                                          <select class="form-control" name="gender" value="" required="" type="text">
-                                              <option></option>
-                                              <option @if(old('gender')=='Male')  selected @endif>Male</option>
-                                              <option @if(old('gender')=='Female')  selected @endif>Female</option>
-                                          </select>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="firstName">Fullname</label>
+                                            <input class="form-control" name="name" value="{{old('name')}}"
+                                                   placeholder="Fullname"
+                                                   required="" autofocus="" type="text"
+                                            >
+                                        </div>
 
-                                      </div>
-                                      <div class="col-md-6 mb-3">
-                                          <br>
-                                          <label for="firstName">National ID <label class="badge badge-info">Format
-                                                  67-2001643-H-09</label></label>
-                                          <input class="form-control" name="national_id" placeholder="National ID Number"
-                                                 value="{{old('national_id')}}" type="text">
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="firstName">Email</label>
+                                            <input class="form-control" name="email" value="{{old('email')}}"
+                                                   placeholder="Email Address"
+                                                   required="" type="email"
+                                            >
+                                        </div>
 
-                                      </div>
-                                      <div class="col-md-6 mb-3">
-                                          <br>
-                                          <label for="firstName">Select ID Photo</label>
-                                          <input type="file" src="" alt="" name="image" value="{{old('image')}}"
-                                                 onchange="readURL(this);">
+                                        <div class="col-md-6 mb-3" style="display: nodne !important;">
+                                            <br/>
+                                            <label for="firstName">Date of Birth</label>
+                                            <div style="width: 100% !important;">
+                                                <input class="form-control" name="dob"
+                                                       value="{{old('dob')}}" required=""
+                                                       type="date">
+                                            </div>
+                                        </div>
 
-                                      </div>
-                                      <div class="col-lg-12">
-                                          <hr class="mb-4">
-                                      </div>
-                                  <!--
+                                        <div class="col-md-6 mb-3" style="display: nodne !important;">
+                                            <br/>
+                                            <label for="firstName">Date of Issue</label>
+                                            <div style="width: 100% !important;">
+                                                <input class="form-control" name="date_of_issue"
+                                                       placeholder="dd-mm-yyyy"
+                                                       value="{{old('date_of_issue')}}" required=""
+                                                       type="date">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6 mb-3">
+                                            <br>
+                                            <label for="firstName">Gender</label>
+                                            <select class="form-control" name="gender" value="" required="" type="text">
+                                                <option></option>
+                                                <option @if(old('gender')=='Male')  selected @endif>Male</option>
+                                                <option @if(old('gender')=='Female')  selected @endif>Female</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <br>
+                                            <label for="firstName">National ID <label class="badge badge-info">Format
+                                                    67-2001643-H-09</label></label>
+                                            <input class="form-control" name="national_id"
+                                                   placeholder="National ID Number"
+                                                   value="{{old('national_id')}}" type="text">
+
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <br>
+                                            <label for="firstName">Select ID Photo</label>
+                                            <input type="file" src="" alt="" name="image" value="{{old('image')}}"
+                                                   onchange="readURL(this);">
+
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <hr class="mb-4">
+                                        </div>
+                                    <!--
                                 <div class="col-lg-12 mb-3 row">
 
                                     <div class="custom-control custom-checkbox col-lg-2">
@@ -152,31 +172,32 @@
                                     </div>
                                 </div>
                                 -->
-                                  </div>
+                                    </div>
 
 
-                                  <div class="row">
+                                    <div class="row">
 
-                                      <br>
-                                      <div class="col-lg-12">
-                                          <br>
-                                          <div class="alert alert-info">
-                                              <p><b>Make sure the input is correct and you have confirmed with the original
-                                                      document before clicking "Save" button</b></p>
-                                          </div>
-                                          <input type="submit" class="btn btn-primary btn-lg"
-                                                 value="I Have Confirmed, Save The Record">
-                                      </div>
-                                  </div>
-                              </fieldset>
-                          </form>
+                                        <br>
+                                        <div class="col-lg-12">
+                                            <br>
+                                            <div class="alert alert-info">
+                                                <p><b>Make sure the input is correct and you have confirmed with the
+                                                        original
+                                                        document before clicking "Save" button</b></p>
+                                            </div>
+                                            <input type="submit" class="btn btn-primary btn-lg"
+                                                   value="I Have Confirmed, Save The Record">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
 
-                      </div>
-                  </div>
-              </div>
-          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      </div>
+        </div>
     </div>
 
 

@@ -44,18 +44,35 @@
 
                                 <div class="col-lg-6 mb-3">
                                     <label for="firstName">Mode of Study</label>
-                                    <input class="form-control" name="mode" value="{{$licence->mode}}"
-                                           placeholder="Mode of Study"
-                                           required="" autofocus="" type="text"
-                                    >
+                                    <select class="form-control" name="mode" required>
+                                        <option></option>
+                                        <option>Full-time</option>
+                                        <option>Part-time</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
                                     <label for="firstName">Course</label>
-                                    <input class="form-control" name="course" value="{{$licence->course}}"
-                                           placeholder="Course"
-                                           required="" type="text"
-                                    >
+                                    <select class="form-control" name="course" required>
+                                        <option></option>
+                                        <?php $programmes = array(
+                                            "ND in: Accounting",
+                                            "ND Purchasing and Supply", "ND in Secretarial Studies",
+                                            "ND in Information Technology",
+                                            "NC Hairdressing/Cosmetology/ Beauty Therapy",
+                                            "NC in Diesel Plant Fitting",
+                                            "NC in Draughting & Design Technology",
+                                            "NC in Plant/ Production Engineering",
+                                            "ND in Technical & Vocational Education  (HEXCO)"
+                                        );
+
+                                        foreach ($programmes as $programme):
+                                        ?>
+                                        <option><?php echo $programme; ?></option>
+                                        <?php endforeach;?>
+
+                                    </select>
+
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
